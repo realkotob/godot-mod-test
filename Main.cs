@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Linq;
+using System.Reflection;
+using Directory = System.IO.Directory;
 
 public class Main : Node2D
 {
@@ -7,11 +10,27 @@ public class Main : Node2D
     // private int a = 2;
     // private string b = "textvar";
 
+    private const string PluginsDirectoryName = "Plugins";
+
     public override void _Ready()
     {
+        this.PopulatePluginAssemblies();
+    }
+
+    private void PopulatePluginAssemblies()
+    {
         ItemList list = this.GetNode(@"Panel/ItemList") as ItemList;
-        list.AddItem("Hello from C#!");
         
+        if (Directory.Exists(PluginsDirectoryName)) {
+            var allFiles = Directory.GetFiles(PluginsDirectoryName, "*.dll");
+
+            foreach (var fileName in allFiles) {
+                var assembly = Assembly.LoadFile($"{PluginsDirectoryName}{System.IO.Path.DirectorySeparatorChar}{fileName}");
+                list.AddItem(assembly.FullName);
+            }
+        } else {
+            list.AddItem("Plugins directory doesn't exist.");
+        }
     }
 
 //    public override void _Process(float delta)
