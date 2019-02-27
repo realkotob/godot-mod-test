@@ -25,7 +25,7 @@ public class Main : Node2D
             var allFiles = Directory.GetFiles(PluginsDirectoryName, "*.dll");
 
             foreach (var fileName in allFiles) {
-                var assembly = Assembly.LoadFile($"{PluginsDirectoryName}{System.IO.Path.DirectorySeparatorChar}{fileName}");
+                var assembly = Assembly.LoadFile(fileName);
                 list.AddItem(assembly.FullName);
             }
         } else {

@@ -8,6 +8,6 @@ namespace GameApi
 {
     public interface ILevelGenerator
     {
-        bool[][] GenerateMap();
+        bool[,] GenerateMap();
     }
 }

@@ -8,8 +8,8 @@ namespace GameApi
 {
     public abstract class AbstractMonster
     {
-        public string Name { get; set; }
-        public int Health { get; set; }
-        public int Strength { get; set; }
+        public abstract string Name { get; set; }
+        public abstract int Health { get; set; }
+        public abstract int Strength { get; set; }
     }
 }
