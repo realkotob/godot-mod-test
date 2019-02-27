@@ -62,7 +62,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-text = "Select an item from the list to view the details here. "
+text = "NB: if this project doesn't build, change your MSBuild version in Godot: Editor > Settings > Mono > Build to use VS Build Tools
+
+Select an item from the list to view the details here. "
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
