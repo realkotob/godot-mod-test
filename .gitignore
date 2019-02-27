@@ -1,3 +1,5 @@
 .mono/temp
 **/bin
 **/obj
+**/*.suo
+Godot/Plugins/*
