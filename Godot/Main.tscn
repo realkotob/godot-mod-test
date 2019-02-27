@@ -71,4 +71,6 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "custom_fonts" ]
 
+[connection signal="item_selected" from="Panel/ItemList" to="." method="_on_ItemList_item_selected"]
+
 

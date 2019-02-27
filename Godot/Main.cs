@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Directory = System.IO.Directory;
 
 public class Main : Godot.Node2D
 {
     private const string PluginsDirectoryName = "Plugins";
-    private Dictionary<string, PluginData> pluginData = new Dictionary<string, PluginData>();
+    private List<PluginData> pluginData = new List<PluginData>();
 
     public override void _Ready()
     {
@@ -46,17 +47,42 @@ public class Main : Godot.Node2D
                 }
 
                 list.AddItem(fileName);
-                pluginData[fileName] = data;
+                pluginData.Add(data);
             }
         } else {
             list.AddItem("Plugins directory doesn't exist.");
         }
     }
 
-//    public override void _Process(float delta)
-//    {
-//        // Called every frame. Delta is time since last frame.
-//        // Update game logic here.
-//        
-//    }
+    public void _on_ItemList_item_selected(int index)
+    {
+        var data = this.pluginData[index];
+        var label = (Godot.Label)this.GetNode("Panel/Label");
+
+        var builder = new StringBuilder();
+        builder.Append("DLL: ").AppendLine(data.DllName);
+
+        builder.AppendLine("");
+        builder.AppendLine($"{data.Monsters.Count} Monsters:");
+        foreach (var monster in data.Monsters)
+        {
+            builder.AppendLine($"        {monster.Name}: {monster.Health} health, {monster.Strength} strength");
+        }
+
+        builder.AppendLine("");
+        builder.AppendLine($"{data.LevelGenerators.Count} Level Generators:");
+        foreach (var generator in data.LevelGenerators)
+        {
+            builder.AppendLine($"        {generator.GetType().Name}");
+        }
+
+        label.Text = builder.ToString();
+    }
+
+    //    public override void _Process(float delta)
+    //    {
+    //        // Called every frame. Delta is time since last frame.
+    //        // Update game logic here.
+    //        
+    //    }
 }
