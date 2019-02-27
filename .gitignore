@@ -1,1 +1,3 @@
 .mono/temp
+**/bin
+**/obj
