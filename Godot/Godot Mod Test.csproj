@@ -50,7 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
+    <Compile Include="PluginData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\C#\GameApi\GameApi.csproj">
+      <Project>{e752e84a-4116-49d9-852d-130437ce2ddd}</Project>
+      <Name>GameApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

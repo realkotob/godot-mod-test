@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameApi
 {
-    interface ILevelGenerator
+    public interface ILevelGenerator
     {
         bool[][] GenerateMap();
     }
